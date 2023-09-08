@@ -3,12 +3,15 @@ import 'package:ui_ux_pet/foundation/colors.dart';
 
 class StatusLabel extends StatelessWidget {
   const StatusLabel(
-      {Key? key, required this.label, this.color = StatusLabelColor.neutral})
+      {Key? key,
+      required this.label,
+      this.color = StatusLabelColor.neutral,
+      this.size = StatusLabelSize.medium})
       : super(key: key);
 
   final String label;
-
   final StatusLabelColor color;
+  final StatusLabelSize size;
 
   @override
   Widget build(BuildContext context) {
