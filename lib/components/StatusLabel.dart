@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_ux_pet/foundation/colors.dart';
 
 class StatusLabel extends StatelessWidget {
   const StatusLabel(
@@ -30,11 +31,11 @@ enum StatusLabelColor { neutral, red, green, yellow, blue }
 extension StatusLabelColorExt on StatusLabelColor {
   Color get color {
     const hexCodes = [
-      0xFFFF0000,
-      0xFF00FF00,
-      0xFF0000FF,
-      0xFF0000FF,
-      0xFF0000FF
+      ErifazDSColor.colorActionSecondary70,
+      ErifazDSColor.colorAccentDanger60,
+      ErifazDSColor.colorAccentSuccess80,
+      ErifazDSColor.colorAccentWarning60,
+      ErifazDSColor.colorAccentInfo70,
     ];
     return Color(hexCodes[index]);
   }
@@ -44,6 +45,14 @@ enum StatusLabelSize { medium, small }
 
 extension StatusLabelSizeExt on StatusLabelSize {
   int get circleSize {
+    const sizes = [
+      12,
+      10,
+    ];
+    return sizes[index];
+  }
+
+  int get textSize {
     const sizes = [
       12,
       10,
