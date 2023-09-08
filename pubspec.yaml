@@ -74,12 +74,50 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: NoiGrotesk
+      fonts:
+        - asset: assets/fonts/NoiGrotesk-Regular.ttf
+          style: normal
+          weight: 400
+        - asset: assets/fonts/NoiGrotesk-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-UltraLight.ttf
+          weight: 200
+        - asset: assets/fonts/NoiGrotesk-UltraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/NoiGrotesk-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/NoiGrotesk-SemiboldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NoiGrotesk-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-Light.ttf
+          weight: 300
+        - asset: assets/fonts/NoiGrotesk-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-Black.ttf
+          weight: 900
+        - asset: assets/fonts/NoiGrotesk-BlackItalic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/NoiGrotesk-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NoiGrotesk-BoldItalic.ttf
+          weight: 700
+          style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
