@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_ux_pet/foundation/colors.dart';
+import 'package:ui_ux_pet/foundation/size.dart';
 
 class StatusLabel extends StatelessWidget {
   const StatusLabel(
@@ -16,14 +17,27 @@ class StatusLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       direction: Axis.horizontal,
       children: [
-        Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(color: color.color, shape: BoxShape.circle),
+        Padding(
+          padding:
+              const EdgeInsets.only(left: 0, top: 2.0, right: 0, bottom: 0),
+          child: Container(
+            alignment: Alignment.center,
+            height: size.circleSize,
+            width: size.circleSize,
+            decoration:
+                BoxDecoration(color: color.color, shape: BoxShape.circle),
+          ),
         ),
-        Text(label)
+        const SizedBox(width: 8),
+        Text(
+          label,
+          style: TextStyle(
+              fontSize: size.textSize,
+              color: const Color(ErifazDSColor.colorTextNeutral50)),
+        )
       ],
     );
   }
@@ -47,19 +61,19 @@ extension StatusLabelColorExt on StatusLabelColor {
 enum StatusLabelSize { medium, small }
 
 extension StatusLabelSizeExt on StatusLabelSize {
-  int get circleSize {
+  double get circleSize {
     const sizes = [
-      12,
-      10,
+      12.0,
+      10.0,
     ];
     return sizes[index];
   }
 
-  int get textSize {
+  double get textSize {
     const sizes = [
-      12,
-      10,
+      ErifazDSSize.textWebBodyRegularSmFontSize,
+      ErifazDSSize.textWebBodyRegularXsFontSize,
     ];
-    return sizes[index];
+    return sizes[index].toDouble();
   }
 }
