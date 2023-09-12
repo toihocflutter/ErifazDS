@@ -16,6 +16,7 @@ Main board for collaboration https://trello.com/b/gwpvzHXJ/erifaz-design-system
 
 ## Architecture Overview
 Booking lunch app is using Flutter bloc.
+<img src="./bloc_overview.png"/>
 
 ## Project Structure
 This workspace include 2 parts:
