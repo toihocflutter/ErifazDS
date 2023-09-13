@@ -1,4 +1,4 @@
-import 'package:erifaz_ds/components/StatusLabel.dart';
+import 'package:erifaz_ds/components/status_label.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
