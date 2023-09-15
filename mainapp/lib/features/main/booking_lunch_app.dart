@@ -1,6 +1,8 @@
 import 'package:erifaz_ds/components/status_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ui_ux_pet/common/widget/loading_view.dart';
 import 'package:ui_ux_pet/features/authen/repository/authen_repository.dart';
 import 'package:ui_ux_pet/features/authen/repository/authen_repository_impl.dart';
@@ -8,12 +10,13 @@ import 'package:ui_ux_pet/features/main/bloc/booking_app_bloc.dart';
 import 'package:ui_ux_pet/features/main/bloc/booking_app_event.dart';
 
 import '../../config/app_config.dart';
+import '../../constants/app_theme.dart';
 import '../authen/screen/sign_in_screen.dart';
 import '../home/screen/home_screen.dart';
 import 'bloc/booking_app_state.dart';
 
 class BookingLunchApp extends StatefulWidget {
-  BookingLunchApp({super.key});
+  const BookingLunchApp({super.key});
 
   @override
   State<BookingLunchApp> createState() => _BookingLunchAppState();
@@ -33,33 +36,41 @@ class _BookingLunchAppState extends State<BookingLunchApp> {
   @override
   Widget build(BuildContext context) {
     String title = AppConfig.of(context)?.appName ?? "";
-    ThemeData themeData = AppConfig.of(context)?.themeData ??
-        ThemeData(
-          fontFamily: "NoiGrotesk",
-        );
+    ThemeData themeData =
+        AppConfig.of(context)?.themeData ?? AppTheme.getAppTheme();
 
     return MaterialApp(
-      title: title,
-      theme: themeData,
-      home: RepositoryProvider(
-        create: (context) => authenRepository,
-        child: BlocProvider(
-          create: (_) => bookingBloc,
-          child: BlocBuilder<BookingAppBloc, BookingAppState>(
-              buildWhen: (previousState, state) {
-            return previousState != state;
-          }, builder: (context, state) {
-            if (state.status == BookingAppStatus.guest) {
-              return SignInScreen();
-            }
-            if (state.status == BookingAppStatus.signIn) {
-              return HomeScreen();
-            }
-            return const LoadingView();
-          }),
-        ),
-      ),
-    );
+        title: title,
+        theme: themeData,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'), // English
+        ],
+        home: Scaffold(
+          body: RepositoryProvider(
+            create: (context) => authenRepository,
+            child: BlocProvider(
+              create: (_) => bookingBloc,
+              child: BlocBuilder<BookingAppBloc, BookingAppState>(
+                  buildWhen: (previousState, state) {
+                return previousState != state;
+              }, builder: (context, state) {
+                if (state.status == BookingAppStatus.guest) {
+                  return SignInScreen();
+                }
+                if (state.status == BookingAppStatus.signIn) {
+                  return HomeScreen();
+                }
+                return const LoadingView();
+              }),
+            ),
+          ),
+        ));
   }
 }
 

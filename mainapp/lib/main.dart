@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ui_ux_pet/constants/app_theme.dart';
 
 import 'config/app_bloc_observer.dart';
 import 'config/app_config.dart';
@@ -19,11 +20,7 @@ void bookingLunch(
     appName: appName,
     description: description,
     baseUrl: baseUrl,
-    themeData: ThemeData(
-      primarySwatch: Colors.red,
-      primaryColor: Colors.blueGrey,
-      fontFamily: "NoiGrotesk",
-    ),
+    themeData: AppTheme.getAppTheme(),
     child: BookingLunchApp(),
   );
   runZonedGuarded(

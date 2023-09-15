@@ -39,6 +39,9 @@ dependencies:
 
   erifaz_ds:
     path: ../erifaz_ds
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +59,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
+  assets:
+    - assets/images/authen/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
