@@ -1,6 +1,6 @@
 on: pull_request:
  branches:
-      - master
+      - main
 name: Test, Build and Release apk
 jobs:
   build:
