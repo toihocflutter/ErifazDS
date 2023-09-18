@@ -20,7 +20,7 @@ jobs:
           flutter-version: '3.13.1'
       - run: flutter pub get
       - run: flutter test
-      - run: flutter build apk --debug --split-per-abi
+      - run: flutter build apk --flavor staging --debug --split-per-abi
       - name: Create a Release APK
         uses: ncipollo/release-action@v1
         with:
