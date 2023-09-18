@@ -1,7 +1,8 @@
-on: pull_request:
- branches:
-      - main
 name: Test, Build and Release apk
+on: 
+ pull_request:
+   branches:
+      - main
 jobs:
   build:
     name: Build APK
