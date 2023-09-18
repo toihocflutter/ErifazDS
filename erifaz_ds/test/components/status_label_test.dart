@@ -48,7 +48,7 @@ void main() {
   testWidgets('status label with color red', (tester) async {
     await tester.pumpWidget(TestUtils.buildTestWidget(const StatusLabel(
       label: 'Status label',
-      color: StatusLabelColor.red,
+      color: StatusLabelColor.yellow,
     )));
 
     final circleFinder = tester.widget<Container>(find.byType(Container));
