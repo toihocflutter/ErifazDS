@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ui_ux_pet/constants/app_dimens.dart';
 
-import '../../../common/widget/common_view.dart';
+import '../../../../common/widget/common_view.dart';
 
 class CardSignIn extends StatelessWidget {
   const CardSignIn({super.key});
