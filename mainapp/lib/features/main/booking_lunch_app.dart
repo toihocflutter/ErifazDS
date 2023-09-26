@@ -3,32 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:http/http.dart';
 import 'package:ui_ux_pet/common/widget/loading_view.dart';
-import 'package:ui_ux_pet/features/authen/repository/authen_repository.dart';
-import 'package:ui_ux_pet/features/authen/repository/authen_repository_impl.dart';
+import 'package:ui_ux_pet/features/authen/signin/repository/service/tetgaa_authen_service.dart';
 import 'package:ui_ux_pet/features/main/bloc/booking_app_bloc.dart';
 import 'package:ui_ux_pet/features/main/bloc/booking_app_event.dart';
 
 import '../../config/app_config.dart';
 import '../../constants/app_theme.dart';
-import '../authen/screen/sign_in_screen.dart';
+import '../authen/signin/repository/authen_repository.dart';
+import '../authen/signin/repository/authen_repository_impl.dart';
+import '../authen/signin/screen/sign_in_screen.dart';
 import '../home/screen/home_screen.dart';
 import 'bloc/booking_app_state.dart';
 
 class BookingLunchApp extends StatefulWidget {
-  const BookingLunchApp({super.key});
+  String baseUrl;
+
+  BookingLunchApp({super.key, required this.baseUrl});
 
   @override
   State<BookingLunchApp> createState() => _BookingLunchAppState();
 }
 
 class _BookingLunchAppState extends State<BookingLunchApp> {
-  AuthenRepository authenRepository = AuthenRepositoryImpl();
+  late TetgaaAuthenService tetgaaAuthenService;
+  late AuthenRepository authenRepository;
   late BookingAppBloc bookingBloc;
 
   @override
   void initState() {
     super.initState();
+    tetgaaAuthenService =
+        TetgaaAuthenService(baseUrl: widget.baseUrl, httpClient: Client());
+    authenRepository =
+        AuthenRepositoryImpl(tetgaaAuthenService: tetgaaAuthenService);
     bookingBloc = BookingAppBloc(authenRepository: authenRepository)
       ..add(const GetBookingAppState());
   }
@@ -61,7 +70,7 @@ class _BookingLunchAppState extends State<BookingLunchApp> {
                 return previousState != state;
               }, builder: (context, state) {
                 if (state.status == BookingAppStatus.guest) {
-                  return SignInScreen();
+                  return const SignInScreen();
                 }
                 if (state.status == BookingAppStatus.signIn) {
                   return HomeScreen();

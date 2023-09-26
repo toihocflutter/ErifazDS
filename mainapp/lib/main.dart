@@ -21,7 +21,9 @@ void bookingLunch(
     description: description,
     baseUrl: baseUrl,
     themeData: AppTheme.getAppTheme(),
-    child: BookingLunchApp(),
+    child: BookingLunchApp(
+      baseUrl: 'https://tetgaa.com',
+    ),
   );
   runZonedGuarded(
     () => runApp(appConfig),

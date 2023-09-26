@@ -1,38 +1,47 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:ui_ux_pet/features/authen/widget/card_sign_in.dart';
+import 'package:ui_ux_pet/features/authen/signin/bloc/signin_bloc.dart';
+import 'package:ui_ux_pet/features/authen/signin/repository/authen_repository.dart';
 
-import '../../../constants/app_dimens.dart';
-import '../../../constants/app_images.dart';
+import '../../../../constants/app_dimens.dart';
+import '../../../../constants/app_images.dart';
+import '../widget/card_sign_in.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(alignment: Alignment.center, children: [
-      Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: const AssetImage(AppImages.backgroundSignIn),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.4),
-              BlendMode.srcOver,
+    return BlocProvider(
+      create: (context) {
+        return SignInBloc(
+            authenRepository: RepositoryProvider.of<AuthenRepository>(context));
+      },
+      child: Stack(alignment: Alignment.center, children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: const AssetImage(AppImages.backgroundSignIn),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.4),
+                BlendMode.srcOver,
+              ),
             ),
           ),
         ),
-      ),
-      const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CardSignIn(),
-          SizedBox(height: AppDimens.spaceXSmall),
-          PrivacyPolicyLinkAndTermsOfService()
-        ],
-      )
-    ]);
+        const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CardSignIn(),
+            SizedBox(height: AppDimens.spaceXSmall),
+            PrivacyPolicyLinkAndTermsOfService()
+          ],
+        )
+      ]),
+    );
   }
 }
 
