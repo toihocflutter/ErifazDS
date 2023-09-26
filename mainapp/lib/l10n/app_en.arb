@@ -1,9 +1,11 @@
 {
-    "input_name_label" : "Enter you username",
-    "input_name_password" : "Enter you password",
-    "sign_in": "Sign In",
-    "agree_statement" : "By continuing, you agree to our \n",
-    "terms_of_service": "Terms of Service",
-    "and" : "and",
-    "privacy_policy": "Privacy Policy"
+  "input_name_label": "Enter you username",
+  "input_name_password": "Enter you password",
+  "sign_in": "Sign In",
+  "agree_statement": "By continuing, you agree to our \n",
+  "terms_of_service": "Terms of Service",
+  "and": "and",
+  "privacy_policy": "Privacy Policy",
+  "user_name_cannot_be_empty": "User name cannot be empty",
+  "password_cannot_be_empty": "Password cannot be empty"
 }

@@ -15,6 +15,9 @@ class TetgaaAuthenService {
 
   Future<void> signIn(
       {required String userName, required String password}) async {
-    final response = await _httpClient.get(getUrl(url: 'auth/signin'));
+    final response = await _httpClient.post(getUrl(
+        url: 'auth/signin',
+        queryParameters: {'email': userName, 'password': password}));
+    print(response.bodyBytes);
   }
 }
