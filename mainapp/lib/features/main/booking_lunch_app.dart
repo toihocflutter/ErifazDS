@@ -1,10 +1,10 @@
-import 'package:erifaz_ds/components/status_label.dart';
+import 'package:erifaz_ds/components/button/button.dart';
+import 'package:erifaz_ds/components/statuslabel/status_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart';
-import 'package:ui_ux_pet/common/widget/loading_view.dart';
 import 'package:ui_ux_pet/features/authen/signin/repository/service/tetgaa_authen_service.dart';
 import 'package:ui_ux_pet/features/main/bloc/booking_app_bloc.dart';
 import 'package:ui_ux_pet/features/main/bloc/booking_app_event.dart';
@@ -13,8 +13,6 @@ import '../../config/app_config.dart';
 import '../../constants/app_theme.dart';
 import '../authen/signin/repository/authen_repository.dart';
 import '../authen/signin/repository/authen_repository_impl.dart';
-import '../authen/signin/screen/sign_in_screen.dart';
-import '../home/screen/home_screen.dart';
 import 'bloc/booking_app_state.dart';
 
 class BookingLunchApp extends StatefulWidget {
@@ -69,13 +67,14 @@ class _BookingLunchAppState extends State<BookingLunchApp> {
                   buildWhen: (previousState, state) {
                 return previousState != state;
               }, builder: (context, state) {
-                if (state.status == BookingAppStatus.guest) {
-                  return const SignInScreen();
-                }
-                if (state.status == BookingAppStatus.signIn) {
-                  return HomeScreen();
-                }
-                return const LoadingView();
+                // if (state.status == BookingAppStatus.guest) {
+                //   return const SignInScreen();
+                // }
+                // if (state.status == BookingAppStatus.signIn) {
+                //   return HomeScreen();
+                // }
+                // return const LoadingView();
+                return DesignSystemShowCaseScreen();
               }),
             ),
           ),
@@ -110,6 +109,10 @@ class DesignSystemShowCaseScreen extends StatelessWidget {
           label: "Status Label",
           color: StatusLabelColor.yellow,
         ),
+        SizedBox(height: 10),
+        Text("Button component"),
+        SizedBox(height: 10),
+        Button()
       ],
     ));
   }

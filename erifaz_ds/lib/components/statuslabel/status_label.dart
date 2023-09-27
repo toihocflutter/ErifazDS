@@ -1,8 +1,8 @@
 import 'package:erifaz_ds/foundation/ds_theme.dart';
 import 'package:flutter/material.dart';
 
-import '../foundation/colors.dart';
-import '../foundation/size.dart';
+import '../../foundation/colors.dart';
+import '../../foundation/size.dart';
 
 class StatusLabel extends StatelessWidget {
   const StatusLabel(

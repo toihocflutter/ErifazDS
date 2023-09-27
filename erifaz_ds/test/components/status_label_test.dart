@@ -1,4 +1,4 @@
-import 'package:erifaz_ds/components/status_label.dart';
+import 'package:erifaz_ds/components/statuslabel/status_label.dart';
 import 'package:erifaz_ds/foundation/colors.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
