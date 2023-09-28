@@ -112,7 +112,18 @@ class DesignSystemShowCaseScreen extends StatelessWidget {
         SizedBox(height: 10),
         Text("Button component"),
         SizedBox(height: 10),
-        Button()
+        Row(
+          children: [
+            Flexible(child: Button()),
+            SizedBox(width: 10),
+            Flexible(
+                child: Button(
+              buttonState: ButtonState.disabled,
+            )),
+            SizedBox(width: 10),
+            Flexible(child: Button())
+          ],
+        )
       ],
     ));
   }
