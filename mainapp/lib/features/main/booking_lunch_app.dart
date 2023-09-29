@@ -87,8 +87,7 @@ class DesignSystemShowCaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Column(
+    return Material(child: Column(
       children: [
         SizedBox(height: 50),
         StatusLabel(
@@ -118,13 +117,13 @@ class DesignSystemShowCaseScreen extends StatelessWidget {
             SizedBox(width: 10),
             Flexible(
                 child: Button(
-              buttonState: ButtonState.disabled,
+              disabled: true,
             )),
             SizedBox(width: 10),
             Flexible(child: Button())
           ],
         )
       ],
-    ));
+    ));;
   }
 }

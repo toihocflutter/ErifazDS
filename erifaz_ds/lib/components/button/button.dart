@@ -1,24 +1,26 @@
-import 'package:erifaz_ds/components/button/button_utils.dart';
+import 'package:erifaz_ds/components/button/button_color_state.dart';
 import 'package:erifaz_ds/foundation/colors.dart';
 import 'package:erifaz_ds/foundation/size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 
 import '../../foundation/ds_theme.dart';
 
 class Button extends StatefulWidget {
-  const Button(
+  Button(
       {super.key,
-      ButtonType? buttonType,
-      ButtonSize? buttonSize,
-      ButtonState? buttonState})
-      : _buttonType = buttonType ?? ButtonType.primary,
-        _buttonSize = buttonSize ?? ButtonSize.large,
-        _buttonState = buttonState ?? ButtonState.normal;
+      ButtonType buttonType = ButtonType.primary,
+      ButtonSize buttonSize = ButtonSize.large,
+      bool disabled = false})
+      : _buttonType = buttonType,
+        _buttonSize = buttonSize,
+        _buttonColorState = buttonType.getButtonState() {
+    _buttonColorState = _buttonColorState.copyWith(isDisabled: disabled);
+  }
 
   final ButtonType _buttonType;
   final ButtonSize _buttonSize;
-  final ButtonState _buttonState;
+  ButtonColorState _buttonColorState;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -31,55 +33,42 @@ class _ButtonState extends State<Button> {
     // if (widget.disabled || widget.loading) {
     //   cursor = SystemMouseCursors.forbidden;
     // }
-    return MouseRegion(
-      cursor: cursor,
-      onEnter: handleEnter,
-      onExit: handleExit,
-      child: GestureDetector(
-        onTapDown: onTapDown,
-        onTapUp: onTapUp,
-        child: Container(
-            decoration:
-                widget._buttonType.getBoxDecoration(widget._buttonState),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
-              child: Text(
-                'Button',
-                style: DSTheme.getTextStyle().copyWith(
-                    fontSize: widget._buttonSize.getTextSize(),
-                    color: widget._buttonType.getTextColor()),
-              ),
-            )),
+
+    return Ink(
+      decoration: widget._buttonType.getBoxDecoration(widget._buttonColorState),
+      child: InkWell(
+        onTap: () {},
+        child: MouseRegion(
+          cursor: cursor,
+          onEnter: handleMouseEnter,
+          onExit: handleMouseExit,
+          child: Container(
+              child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+            child: Text(
+              'Button',
+              style: DSTheme.getTextStyle().copyWith(
+                  fontSize: widget._buttonSize.getTextSize(),
+                  color: widget._buttonType.getTextColor()),
+            ),
+          )),
+        ),
       ),
     );
-
-    // return Container(
-    // decoration: widget._buttonType.getBoxDecoration(),
-    // child: Padding(
-    // padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
-    // child: Text(
-    // 'Button',
-    // style: DSTheme.getTextStyle().copyWith(
-    // fontSize: widget._buttonSize.getTextSize(),
-    // color: widget._buttonType.getTextColor()),
-    // )
-    // ,
-    // )
-    // );
   }
 
-  void handleEnter(PointerEnterEvent event) {
-    // if (!widget.disabled && !widget.loading) {
-    //   setState(() => hovered = true);
-    // }
-    print("Handle enter");
+  void handleMouseEnter(PointerEnterEvent event) {
+    if (!widget._buttonColorState.isDisabled) {
+      setState(() => widget._buttonColorState =
+          widget._buttonColorState.copyWith(isHovered: true));
+    }
   }
 
-  void handleExit(PointerExitEvent event) {
-    // if (!widget.disabled && !widget.loading) {
-    //   setState(() => hovered = false);
-    // }
-    print("Handle exit");
+  void handleMouseExit(PointerExitEvent event) {
+    if (!widget._buttonColorState.isDisabled) {
+      setState(() => widget._buttonColorState =
+          widget._buttonColorState.copyWith(isHovered: false));
+    }
   }
 
   void onTapUp(TapUpDetails tapUpDetails) {
@@ -100,11 +89,11 @@ class _ButtonState extends State<Button> {
 enum ButtonType { primary, normal, dashed, link, text }
 
 extension ButtonTypeExt on ButtonType {
-  BoxDecoration getBoxDecoration(ButtonState state) {
+  BoxDecoration getBoxDecoration(ButtonColorState buttonColorState) {
     switch (this) {
       case ButtonType.primary:
         {
-          Color color = ButtonUtils.getColorPrimary(state);
+          Color color = buttonColorState.getBackgroundColor();
           return BoxDecoration(color: color);
         }
       case ButtonType.normal:
@@ -131,6 +120,15 @@ extension ButtonTypeExt on ButtonType {
     ];
     return Color(colors[index]);
   }
+
+  ButtonColorState getButtonState() {
+    switch (this) {
+      case ButtonType.primary:
+        return ButtonPrimaryState();
+      default:
+        return ButtonPrimaryState();
+    }
+  }
 }
 
 enum ButtonSize { large, medium, small }
@@ -145,5 +143,3 @@ extension ButtonSizeExt on ButtonSize {
     return sizes[index].toDouble();
   }
 }
-
-enum ButtonState { normal, hovered, focus, disabled }
