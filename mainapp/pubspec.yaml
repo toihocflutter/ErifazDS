@@ -44,6 +44,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  carousel_slider: ^4.2.1
+  lottie: ^2.7.0
+  animate_do: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +67,7 @@ flutter:
   generate: true
   assets:
     - assets/images/authen/
+    - assets/animation/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

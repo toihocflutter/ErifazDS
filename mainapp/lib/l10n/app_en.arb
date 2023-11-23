@@ -7,5 +7,9 @@
   "and": "and",
   "privacy_policy": "Privacy Policy",
   "user_name_cannot_be_empty": "User name cannot be empty",
-  "password_cannot_be_empty": "Password cannot be empty"
+  "password_cannot_be_empty": "Password cannot be empty",
+  "skip": "Skip",
+  "firstOnboard": "Enjoy your\nLife with Plants",
+  "secondOnboard": "Greener with\nEvery Tap..",
+  "thirdOnboard": "Leaf by Leaf,\nGrow Smart."
 }
