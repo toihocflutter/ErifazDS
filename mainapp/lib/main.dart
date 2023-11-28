@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui_ux_pet/constants/app_theme.dart';
+import 'package:ui_ux_pet/plantshop/plant_shop_app.dart';
 
 import 'config/app_bloc_observer.dart';
 import 'config/app_config.dart';
@@ -29,4 +30,8 @@ void bookingLunch(
     () => runApp(appConfig),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
+}
+
+void plantAppShop() {
+  runApp(PlantShopApp());
 }
